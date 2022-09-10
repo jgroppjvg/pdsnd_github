@@ -8,13 +8,13 @@ _bikeshare data_
 
 ### Description
 Project 3 on rented bike data
-<sub>Data compiled from 3 cities</sub>
+* <sub>Data compiled from 3 cities</sub>
 
 ### Files used
-Bikeshare.py
-chicago.csv
-new_york_city.csv
-washington.csv
+- Bikeshare.py
+- chicago.csv
+- new_york_city.csv
+- washington.csv
 
 ### Credits
 _To be inserted_
