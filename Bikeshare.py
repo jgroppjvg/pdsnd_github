@@ -38,8 +38,16 @@ def get_filters():
     # city (chicago, new_york_city, washington)
     # month (all, January, February, March, April, May, June, July, August, September, October, November, December)
     # day of week (all, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday)
+<<<<<<< HEAD
 
     city= input('Name of the city to analyze the data: ').lower()
+||||||| 043e5f7
+       
+    city= input('Name of the city to analyze: ').lower()
+=======
+
+    city= input('Name of the city to analyze: ').lower()
+>>>>>>> refactoring
     month = input('Name of the month to filter by, or "all" to apply no month filter: ').lower().title()
     day = input('Name of the day of week to filter by, or "all" to apply no day filter: ').lower().title()
 
@@ -57,7 +65,7 @@ def load_data(city, month, day):
         df['Hour'] = df['Start Time'].dt.strftime('%H')
         df['Join_Stations']= df[['Start Station','End Station']].apply(lambda x: ' / / '.join(x), axis=1)
     except:
-        print('CITY does not exist in the Database')
+        print('CITY does not exist in the Database, try it again:')
         print('-'*40)
         main()
 
@@ -95,15 +103,23 @@ def time_stats(df):
     for key, value in df['Day'].value_counts().items():
         list_key_d.append(key)
         list_value_d.append(value)
+<<<<<<< HEAD
     print('The most common Day is {} with {} times'.format(list_key_d[0].upper(),list_value_d[0]))
 
+||||||| 043e5f7
+    print('The most common Day is {} with {} times'.format(list_key_d[0].upper(),list_value_d[0]))
+    
+=======
+    print('The most common Day is: {} with: {} times'.format(list_key_d[0].upper(),list_value_d[0]))
+
+>>>>>>> refactoring
     # display the most common start hour
     list_key_h = []
     list_value_h = []
     for key, value in df['Hour'].value_counts().items():
         list_key_h.append(key)
         list_value_h.append(value)
-    print('The most common Hour is {} with {} times'.format(list_key_h[0].upper(),list_value_h[0]))
+    print('The most common Hour is: {} with: {} times'.format(list_key_h[0].upper(),list_value_h[0]))
 
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
