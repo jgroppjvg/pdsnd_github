@@ -57,7 +57,7 @@ def load_data(city, month, day):
         df['Hour'] = df['Start Time'].dt.strftime('%H')
         df['Join_Stations']= df[['Start Station','End Station']].apply(lambda x: ' / / '.join(x), axis=1)
     except:
-        print('CITY does not exist in the Database')
+        print('CITY does not exist in the Database, try it again:')
         print('-'*40)
         main()
 
