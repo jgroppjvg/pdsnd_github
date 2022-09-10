@@ -5,16 +5,16 @@
 # most common month
 # most common day of week
 # most common hour of day
-# 
+#
 # #2 Popular stations and trip
 # most common start station
 # most common end station
 # most common trip from start to end (i.e., most frequent combination of start station and end station)
-# 
+#
 # #3 Trip duration
 # total travel time
 # average travel time
-# 
+#
 # #4 User info
 # counts of each user type
 # counts of each gender (only available for NYC and Chicago)
@@ -38,18 +38,18 @@ def get_filters():
     # city (chicago, new_york_city, washington)
     # month (all, January, February, March, April, May, June, July, August, September, October, November, December)
     # day of week (all, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday)
-       
+
     city= input('Name of the city to analyze: ').lower()
     month = input('Name of the month to filter by, or "all" to apply no month filter: ').lower().title()
     day = input('Name of the day of week to filter by, or "all" to apply no day filter: ').lower().title()
-            
-    print('-'*40)       
-    return city, month, day
-      
 
-def load_data(city, month, day):           
+    print('-'*40)
+    return city, month, day
+
+
+def load_data(city, month, day):
     try:
-        df = pd.read_csv(("D://Python GERAL/Udacity/all-project-files/{}").format(CITY_DATA[city]), delimiter=',')           
+        df = pd.read_csv(("D://Python GERAL/Udacity/all-project-files/{}").format(CITY_DATA[city]), delimiter=',')
         df['Start Time'] = pd.to_datetime(df['Start Time'])
         df['End Time'] = pd.to_datetime(df['End Time'])
         df['Month'] = df['Start Time'].dt.strftime('%B')
@@ -60,13 +60,13 @@ def load_data(city, month, day):
         print('CITY does not exist in the Database')
         print('-'*40)
         main()
-    
+
     if month !=  'All':
         df = df[df['Month']== month]
 
     if day !=  'All':
         df = df[df['Day'] == day]
-     
+
     return df
 
 
@@ -74,7 +74,7 @@ def time_stats(df):
     """Displays statistics on the most frequent times of travel."""
     print('\nCalculating The Most Frequent Times of Travel...\n')
     start_time = time.time()
-    
+
     # display the most common month
     list_key_m = []
     list_value_m = []
@@ -87,23 +87,23 @@ def time_stats(df):
         print('-'*40)
         print('MONTH does not exist in the Database')
         print('-'*40)
-        main()       
-    
+        main()
+
     # display the most common day of week
     list_key_d = []
     list_value_d = []
     for key, value in df['Day'].value_counts().items():
         list_key_d.append(key)
         list_value_d.append(value)
-    print('The most common Day is {} with {} times'.format(list_key_d[0].upper(),list_value_d[0]))
-    
+    print('The most common Day is: {} with: {} times'.format(list_key_d[0].upper(),list_value_d[0]))
+
     # display the most common start hour
     list_key_h = []
     list_value_h = []
     for key, value in df['Hour'].value_counts().items():
         list_key_h.append(key)
         list_value_h.append(value)
-    print('The most common Hour is {} with {} times'.format(list_key_h[0].upper(),list_value_h[0]))
+    print('The most common Hour is: {} with: {} times'.format(list_key_h[0].upper(),list_value_h[0]))
 
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
@@ -173,7 +173,7 @@ def user_stats(df):
         print('GENDER: ', df['Gender'].value_counts(dropna=False))
     except:
         print("Don't exist in the Database a column GENDER")
-        
+
     print('-'*40)
     # Display earliest, most recent, and most common year of birth
     try:
@@ -187,7 +187,7 @@ def user_stats(df):
         print("Don't exist in the Database a column BIRTH")
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
-    
+
 
 def display_data(df):
     start_loc = 0
@@ -196,7 +196,7 @@ def display_data(df):
         print(df.iloc[start_loc:start_loc+5])
         start_loc += 5
         view_data = input("Do you wish to continue? Enter yes or no.\n': ").lower()
-        
+
 
 def main():
     while True:
@@ -207,7 +207,7 @@ def main():
         trip_duration_stats(df)
         user_stats(df)
         display_data(df)
-        
+
         restart = input('\nWould you like to restart? Enter yes or no.\n')
         if restart.lower() != 'yes':
             break
@@ -230,25 +230,25 @@ import time
 import pandas as pd
 import numpy as np
 CITY_DATA = {'chicago': 'chicago.csv', 'new york city': 'new_york_city.csv', 'washington': 'washington.csv'}
-  
+
 def get_filters():
     print('Hello! Let\'s explore some US bikeshare data!')
     # city (chicago, new_york_city, washington)
     # month (all, January, February, March, April, May, June, July, August, September, October, November, December)
     # day of week (all, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday)
-       
+
     city= str(input('Name of the city to analyze: '))
     month = str(input('Name of the month to filter by, or "all" to apply no month filter: '))
     day = str(input('Name of the day of week to filter by, or "all" to apply no day filter: '))
-            
-            
-    print('-'*40)       
-    return city, month, day
-      
 
-def load_data(city, month, day):           
+
+    print('-'*40)
+    return city, month, day
+
+
+def load_data(city, month, day):
     try:
-        df = pd.read_csv(("D://Python GERAL/Udacity/all-project-files/{}").format(CITY_DATA[city]), delimiter=',')           
+        df = pd.read_csv(("D://Python GERAL/Udacity/all-project-files/{}").format(CITY_DATA[city]), delimiter=',')
         df['Start Time'] = pd.to_datetime(df['Start Time'])
         df['Month'] = df['Start Time'].dt.strftime('%B')
         df['Day'] = df['Start Time'].dt.strftime('%#A')
@@ -258,7 +258,7 @@ def load_data(city, month, day):
         print('CITY does not exist in the Database')
         print('-'*40)
         main()
-    
+
     if month ==  'all':
         df = df[df['Month'] == df['Month']]
     else:
@@ -268,14 +268,14 @@ def load_data(city, month, day):
         df = df[df['Day'] == df['Day']]
     else:
         df = df[df['Day'] == day]
-     
+
     return df
 
 def time_stats(df):
     """Displays statistics on the most frequent times of travel."""
     print('\nCalculating The Most Frequent Times of Travel...\n')
     start_time = time.time()
-    
+
     # display the most common month
     list_key_m = []
     list_value_m = []
@@ -288,8 +288,8 @@ def time_stats(df):
         print('-'*40)
         print('MONTH does not exist in the Database')
         print('-'*40)
-        main()        
-    
+        main()
+
     # display the most common day of week
     list_key_d = []
     list_value_d = []
@@ -297,7 +297,7 @@ def time_stats(df):
         list_key_d.append(key)
         list_value_d.append(value)
     print('The most common Day is {} with {} times'.format(list_key_d[0].upper(),list_value_d[0]))
-    
+
     # display the most common start hour
     list_key_h = []
     list_value_h = []
@@ -374,7 +374,7 @@ def user_stats(df):
         print('GENDER: ', df['Gender'].value_counts(dropna=False))
     except:
         print("Don't exist in the Database a column GENDER")
-        
+
     print('-'*40)
     # Display earliest, most recent, and most common year of birth
     try:
@@ -422,7 +422,3 @@ if __name__ == "__main__":
 
 
 # In[ ]:
-
-
-
-
